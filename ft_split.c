@@ -100,7 +100,8 @@ static char		**make_tab(char *str, char c)
 	mark = word_mark(str, c);
 	while (i <= count_wd(str, c))
 	{
-		tab[i] = malloc_word(&str[mark[i]], c);
+		if (!(tab[i] = malloc_word(&str[mark[i]], c)))
+			return (ft_free_tab(tab));
 		i++;
 	}
 	tab[i] = NULL;
