@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_split.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: ebenyoub <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: ebenyoub <ebenyoub@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/16 16:10:18 by ebenyoub     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/17 17:28:33 by ebenyoub    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/09 13:50:48 by ebenyoub    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -104,6 +104,7 @@ static char		**make_tab(char *str, char c)
 		i++;
 	}
 	tab[i] = NULL;
+	free(mark);
 	return (tab);
 }
 
@@ -121,6 +122,7 @@ char			**ft_split(char const *s, char c)
 			return (NULL);
 		set[0] = c;
 		str = ft_strtrim(s, set);
+		free(set);
 		tab = make_tab(str, c);
 		return (tab);
 	}

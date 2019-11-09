@@ -6,7 +6,7 @@
 #    By: ebenyoub <ebenyoub@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/29 15:23:25 by ebenyoub     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/07 18:57:03 by ebenyoub    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/09 14:57:33 by ebenyoub    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,9 +19,10 @@ SRCS		=	ft_bzero.c ft_isascii.c ft_memchr.c ft_memset.c ft_strjoin.c\
 				ft_toupper.c ft_atoi.c ft_isalpha.c ft_memccpy.c ft_memmove.c\
 				ft_strdup.c ft_strlen.c ft_strtrim.c ft_strcpy.c ft_calloc.c\
 				ft_strcat.c ft_itoa.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c\
-				ft_putendl_fd.c ft_putnbr_fd.c 
+				ft_putendl_fd.c ft_putnbr_fd.c ft_free_tab.c 
 BSRC		=	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c\
-				ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c
+				ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c\
+				ft_lstmap_bonus.c
 CFLAGS		=	-Wall -Wextra -Werror
 OBJS		=	$(SRCS:.c=.o)
 BOBJ		=	$(BSRC:.c=.o)

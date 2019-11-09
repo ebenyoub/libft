@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_memcmp.c                                      .::    .:/ .      .::   */
+/*   ft_free_tab.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: ebenyoub <ebenyoub@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/14 15:24:46 by ebenyoub     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/09 13:51:53 by ebenyoub    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/08 21:11:21 by ebenyoub     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/09 13:52:05 by ebenyoub    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+void	ft_free_tab(char **tab, int count)
 {
-	const unsigned char *p1;
-	const unsigned char *p2;
-
-	p1 = s1;
-	p2 = s2;
-	while (n--)
+	count = count - 1;
+	while (count >= 0)
 	{
-		if (*p1 != *p2)
-			return (*p1 - *p2);
-		else
-		{
-			p1++;
-			p2++;
-		}
+		free(tab[count]);
+		count--;
 	}
-	return (0);
+	free(tab);
 }
