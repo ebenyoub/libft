@@ -6,7 +6,7 @@
 /*   By: ebenyoub <ebenyoub@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/14 15:24:46 by ebenyoub     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/12 19:07:17 by ebenyoub    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/13 16:18:30 by ebenyoub    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,3 +32,13 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (0);
 }
+
+int		main()
+{
+	char s1[] = "\200";
+	char s2[] = "\0";
+	printf("moi : %d\n", ft_memcmp(s1, s2, 5));
+	printf("lui : %d\n", memcmp(s1, s2, 5));
+	return (0);
+}
+
