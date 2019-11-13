@@ -6,20 +6,25 @@
 /*   By: ebenyoub <ebenyoub@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/08 21:11:21 by ebenyoub     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/09 13:52:05 by ebenyoub    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 18:59:42 by ebenyoub    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_tab(char **tab, int count)
+void	ft_free_tab(char ***tab)
 {
-	count = count - 1;
-	while (count >= 0)
+	int	count;
+
+	if (!tab)
+		return ;
+	count = 0;
+	while ((*tab)[count])
 	{
-		free(tab[count]);
-		count--;
+		free((*tab)[count]);
+		count++;
 	}
-	free(tab);
+	free(*tab);
+	*tab = NULL;
 }

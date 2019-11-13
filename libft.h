@@ -6,7 +6,7 @@
 /*   By: ebenyoub <ebenyoub@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/14 21:04:28 by ebenyoub     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/09 14:57:05 by ebenyoub    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 17:11:41 by ebenyoub    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,7 +37,7 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 int					ft_lstsize(t_list *lst);
 
 void				*ft_calloc(size_t count, size_t size);
-void				ft_free_tab(char **tab, int count);
+void				ft_free_tab(char ***tab);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);

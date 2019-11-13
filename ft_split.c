@@ -6,7 +6,7 @@
 /*   By: ebenyoub <ebenyoub@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/16 16:10:18 by ebenyoub     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/09 13:50:48 by ebenyoub    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/12 18:58:48 by ebenyoub    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,40 +22,38 @@ static int		count_wd(char *str, char c)
 	nb = 0;
 	while (str[i])
 	{
-		if (str[i] == c || str[i] == '\0')
-		{
-			while (str[i] && str[i] == c)
-				i++;
-			nb++;
-		}
-		else
+		while (str[i] == c)
 			i++;
+		if (str[i] && str[i] != c)
+		{
+			nb++;
+			while (str[i] && str[i] != c)
+				i++;
+		}
 	}
 	return (nb);
 }
 
-static int		*word_mark(char *str, char c)
+static int		*word_mark(char *str, char c, int nb)
 {
 	int		i;
 	int		a;
-	int		nb;
 	int		*tab;
 
 	i = 0;
-	a = 1;
-	nb = count_wd(str, c);
-	tab = malloc(sizeof(int) * (nb + 1));
-	tab[0] = 0;
-	while (str[i] && (a <= nb))
+	a = 0;
+	tab = malloc(sizeof(int) * nb);
+	while (str[i] && (a < nb))
 	{
 		if (str[i] == c)
-		{
 			while (str[i] == c)
 				i++;
-			tab[a] = i;
-			a++;
+		if (str[i] != c)
+		{
+			tab[a++] = i;
+			while (str[i] != c)
+				i++;
 		}
-		i++;
 	}
 	return (tab);
 }
@@ -63,47 +61,45 @@ static int		*word_mark(char *str, char c)
 static char		*malloc_word(char *str, char c)
 {
 	int		i;
-	int		a;
 	char	*word;
 
 	i = 0;
-	a = 0;
 	if (!str[0])
 		return (NULL);
 	while (str[i] && str[i] != c)
 		i++;
-	word = malloc(sizeof(char) * i);
+	word = malloc(sizeof(char) * (i + 1));
 	if (word == NULL)
 		return (NULL);
-	while (a < i)
-	{
-		word[a] = str[a];
-		a++;
-	}
-	word[a] = '\0';
+	word[i] = '\0';
+	ft_memmove(word, str, i);
 	return (word);
 }
 
 static char		**make_tab(char *str, char c)
 {
 	int		i;
+	int		count;
 	int		*mark;
 	char	**tab;
 
 	i = 0;
-	tab = malloc(sizeof(char *) * (count_wd(str, c) + 1));
-	if (tab == NULL)
+	count = count_wd(str, c);
+	if (!(tab = malloc(sizeof(char *) * (count + 1))))
 		return (NULL);
-	mark = malloc(sizeof(int) * count_wd(str, c));
-	if (mark == NULL)
+	tab[count] = NULL;
+	if (!(mark = word_mark(str, c, count)))
 		return (NULL);
-	mark = word_mark(str, c);
-	while (i <= count_wd(str, c))
+	while (i < count)
 	{
-		tab[i] = malloc_word(&str[mark[i]], c);
+		if (!(tab[i] = malloc_word(&str[mark[i]], c)))
+		{
+			free(mark);
+			ft_free_tab(&tab);
+			return (NULL);
+		}
 		i++;
 	}
-	tab[i] = NULL;
 	free(mark);
 	return (tab);
 }
@@ -112,19 +108,16 @@ char			**ft_split(char const *s, char c)
 {
 	int		i;
 	char	*set;
-	char	*str;
-	char	**tab;
 
 	if (s)
 	{
 		i = 0;
-		if (!(set = malloc(sizeof(char))))
+		if (!(set = malloc(sizeof(char) * 2)))
 			return (NULL);
 		set[0] = c;
-		str = ft_strtrim(s, set);
+		set[1] = '\0';
 		free(set);
-		tab = make_tab(str, c);
-		return (tab);
+		return (make_tab((char *)s, c));
 	}
 	return (NULL);
 }
